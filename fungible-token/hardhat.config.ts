@@ -5,14 +5,14 @@ import * as env from 'dotenv';
 // config environment
 env.config();
 
-const {DEFAULT_PRIVATE_KEY, ETHERSCAN_API_KEY} = process.env
+const {PRIVATE_KEY, ETHERSCAN_API_KEY} = process.env
 
 const config: HardhatUserConfig = {
   solidity: "0.8.24",
   networks: {
   "arbitrum-sepolia":{
       url: "https://sepolia-rollup.arbitrum.io/rpc",
-      accounts: [`${DEFAULT_PRIVATE_KEY}`],
+      accounts: [PRIVATE_KEY ?? ""],
       chainId: 421614
     }
   },

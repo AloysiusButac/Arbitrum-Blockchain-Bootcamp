@@ -1,22 +1,18 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-// import environment
-import * as env from 'dotenv'; 
-// config environment
+import * as env from 'dotenv';
 env.config();
 
-const {DEFAULT_PRIVATE_KEY, ETHERSCAN_API_KEY} = process.env
-
+const { PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env
 const config: HardhatUserConfig = {
-  solidity: "0.8.24",
+  solidity: "0.8.20",
   networks: {
-  "arbitrum-sepolia":{
+    "arbitrum-sepolia": {
       url: "https://sepolia-rollup.arbitrum.io/rpc",
-      accounts: [`${DEFAULT_PRIVATE_KEY}`],
+      accounts: [PRIVATE_KEY ?? ""],
       chainId: 421614
     }
-  },
-  etherscan: {
+  }, etherscan: {
     apiKey: ETHERSCAN_API_KEY ?? "",
     customChains: [
       {
@@ -29,9 +25,6 @@ const config: HardhatUserConfig = {
       },
     ],
   }
-  
 };
-
-
 
 export default config;
